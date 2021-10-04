@@ -1,11 +1,13 @@
 package com.example.asyncexamplespringboot.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.Future;
 
+@Slf4j
 @Service
 public class BasicService {
 
@@ -13,7 +15,7 @@ public class BasicService {
 	public void onAsync() {
 		try {
 			Thread.sleep(5000);
-			System.out.println("onAsync");
+			log.info("onAsync");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -22,7 +24,7 @@ public class BasicService {
 	public void onSync() {
 		try {
 			Thread.sleep(5000);
-			System.out.println("onSync");
+			log.info("onSync");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -31,7 +33,7 @@ public class BasicService {
 	@Async
 	public Future<String> logger() throws InterruptedException {
 		Thread.sleep(5000);
-		System.out.println("서비스");
+		log.info("서비스");
 		return new AsyncResult<>("결과!!!");
 	}
 
